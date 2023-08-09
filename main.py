@@ -25,7 +25,7 @@ def click():
         except:
             showerror(title='Error', message='Not found')
 
-def click_last_place():
+def click_last_city():
     weather_data = requests.get(url='https://api.openweathermap.org/data/2.5/weather?q=' + last_city_button['text'] +
                                     '&units=metric&lang=eng&appid=2b328558758776732bb4ebe9fc2b431f').json()
     weather_result = f"{weather_data['name']}: {round(weather_data['main']['temp'])}°C (feels like {round(weather_data['main']['feels_like'])}°C), " \
@@ -72,9 +72,9 @@ result_label.grid(column=0, row=3, pady='14')
 weather_icon = PhotoImage(file='weather icon.png').subsample(6, 6)
 Label(root, image=weather_icon, bg=bg_color).place(x=0, y=0)
 
-# last city button$
+# last city button
 Label(root, text='Last city:', font='Bahnschrift 10', bg=bg_color, fg=fg_color).place(x=0, y=140)
 last_city_button = Button(root, text='', font='Bahnschrift 10', bg=bg_color, fg=fg_color,
-                          activebackground=bg_color, command=click_last_place)
+                          activebackground=bg_color, command=click_last_city)
 
 root.mainloop()
