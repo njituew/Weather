@@ -35,6 +35,12 @@ def click_last_place():
     last_city_button.configure(text=last_city)
 
 
+# variables
+bg_color = '#63707A'
+fg_color = '#11C1AE'
+last_city = ''
+n = 0   # the variable n is a counter, thanks to which the last_city_button appears at the right moment
+
 # window
 root = Tk()
 w = 500
@@ -42,14 +48,8 @@ h = 200
 root.geometry(f"{w}x{h}+{(root.winfo_screenwidth()-w)//2}+{(root.winfo_screenheight()-h)//2}")
 root.resizable(0, 0)
 root.title('Weather.py')
-bg_color = '#63707A'
-fg_color = '#11C1AE'
 root.configure(bg=bg_color)
 root.grid_columnconfigure(0, weight=1)
-
-# variables
-last_city = ''
-n = 0   # the variable n is a counter, thanks to which the last_city_button appears at the right moment
 
 # top label
 top_label = Label(root, text='Type your city:', font='Bahnschrift 14', bg=bg_color, fg=fg_color)
