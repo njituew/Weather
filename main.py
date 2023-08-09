@@ -32,6 +32,7 @@ def click_last_place():
                      f" {weather_data['weather'][0]['description'].lower()}, wind {round(weather_data['wind']['speed'], 1)}m/s."
     result_label.configure(text=weather_result)
     input_field.delete(0, END)
+    last_city_button.configure(text=last_city)
 
 
 # window
@@ -60,7 +61,7 @@ input_field.grid(column=0, row=1)
 
 # search button
 search_image = PhotoImage(file='search.png').subsample(16, 16)
-search_button = Button(root, image=search_image, bg=bg_color, command=click)
+search_button = Button(root, image=search_image, bg=bg_color, command=click, activebackground=bg_color)
 search_button.place(x=353, y=57)
 
 # result label
@@ -74,6 +75,6 @@ Label(root, image=weather_icon, bg=bg_color).place(x=0, y=0)
 # last city button$
 Label(root, text='Last city:', font='Bahnschrift 10', bg=bg_color, fg=fg_color).place(x=0, y=140)
 last_city_button = Button(root, text='', font='Bahnschrift 10', bg=bg_color, fg=fg_color,
-                          command=click_last_place)
+                          activebackground=bg_color, command=click_last_place)
 
 root.mainloop()
