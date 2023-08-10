@@ -77,4 +77,7 @@ Label(root, text='Last city:', font='Bahnschrift 12', bg=bg_color, fg=fg_color).
 last_city_button = Button(root, text='Minsk', font='Bahnschrift 11', bg=bg_color, fg=fg_color,
                           activebackground=bg_color, command=click_last_city)
 
+# signature
+Label(root, text='@njituew', font='Bahnschrift 12', bg=bg_color, fg=fg_color).place(x=320, y=430)
+
 root.mainloop()
