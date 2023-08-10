@@ -5,6 +5,7 @@ from tkinter.messagebox import showerror
 
 def click():
     if input_field.get() != '':
+
         try:
             # last city
             global last_city
@@ -15,25 +16,23 @@ def click():
             last_city_button.configure(text=last_city)
             last_city = input_field.get().title()
             # processing the current request
-            city = input_field.get().title()
-            weather_data = requests.get(url = 'https://api.openweathermap.org/data/2.5/weather?q='+city+
-                                              '&units=metric&lang=eng&appid=2b328558758776732bb4ebe9fc2b431f').json()
-            weather_result = f"{weather_data['name']}: {round(weather_data['main']['temp'])}°C (feels like {round(weather_data['main']['feels_like'])}°C), " \
-                             f" {weather_data['weather'][0]['description'].lower()}," \
-                             f"\nwind {round(weather_data['wind']['speed'], 1)}m/s."
-            result_label.configure(text=weather_result)
+            weather_result(input_field.get().title())
+
         except:
             showerror(title='Error', message='Not found')
 
 def click_last_city():
-    weather_data = requests.get(url='https://api.openweathermap.org/data/2.5/weather?q=' + last_city_button['text'] +
-                                    '&units=metric&lang=eng&appid=2b328558758776732bb4ebe9fc2b431f').json()
-    weather_result = f"{weather_data['name']}: {round(weather_data['main']['temp'])}°C (feels like {round(weather_data['main']['feels_like'])}°C), " \
-                     f" {weather_data['weather'][0]['description'].lower()}," \
-                     f"\nwind {round(weather_data['wind']['speed'], 1)}m/s."
-    result_label.configure(text=weather_result)
+    weather_result(last_city_button['text'])
     input_field.delete(0, END)
     last_city_button.configure(text=last_city)
+
+def weather_result(city):
+    weather_data = requests.get(url='https://api.openweathermap.org/data/2.5/weather?q=' + city +
+                                    '&units=metric&lang=eng&appid=2b328558758776732bb4ebe9fc2b431f').json()
+    weather = f"{weather_data['name']}: {round(weather_data['main']['temp'])}°C (feels like {round(weather_data['main']['feels_like'])}°C), " \
+                     f" {weather_data['weather'][0]['description'].lower()}," \
+                     f"\nwind {round(weather_data['wind']['speed'], 1)}m/s."
+    result_label.configure(text=weather)
 
 
 # variables
